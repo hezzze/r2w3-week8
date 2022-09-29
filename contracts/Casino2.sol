@@ -128,6 +128,10 @@ contract Casino2 is Ownable {
         uint256 _value = proposedBet[_commitmentA].value;
         _sideA.transfer(2 * _value);
         emit BetSettled(_commitmentA, _sideA, _sideB, _value);
+
+        // clean up
+        delete proposedBet[_commitmentA];
+        delete acceptedBet[_commitmentA];
     }
 
     // Called by sideB to conclude the results
